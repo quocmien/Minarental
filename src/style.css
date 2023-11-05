@@ -40,6 +40,14 @@ body {
   min-height: 100vh;
 }
 
+#app {
+  max-width: none !important;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: start;
+  width: 100%;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
