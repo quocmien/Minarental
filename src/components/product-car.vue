@@ -7,25 +7,24 @@ const props = defineProps({
   },
   products: {
     type: Array,
-    default: [],
+    default: ([]),
   }
 
 });
 
-const { urlImage, productsCar, products} = props;
 </script>
 
 <template>
-  <el-row class="product" :gutter="10"
+  <el-row class="product" :gutter="15"
     v-for="(item, index) in products"
     :key="index"
   >
     <el-col :span="14" >
        <div
         class="grid-content product__item-background"
-        :data-background="url"
+        :data-background="item.url"
         :style="{
-          backgroundImage: `url(${url})`,
+          backgroundImage: `url(${item.url})`,
         }"
       />
     </el-col>
@@ -86,7 +85,7 @@ const { urlImage, productsCar, products} = props;
           {{ item.status }}
         </p>
         <div 
-          class="content__btn" 
+          class="content__btn mt-2" 
         >
           <el-row
             :gutter="5"
@@ -96,12 +95,20 @@ const { urlImage, productsCar, products} = props;
               v-for="(item, index) in item.btn"
               :key="index"
             >
-              <el-button class="grid-content content__btn-item" type="warning" round>{{ item.title }}</el-button>
+              <el-button class="grid-content content__btn-item" type="warning" round>
+                <a :href="item.link" class="text-black" target="_blank" rel="noopener noreferrer">
+                  {{ item.title }}
+                </a>
+              </el-button>
             </el-col>
           </el-row>
         </div>
         <el-row class="book__now">
-          <el-button class="book__now-btn grid-content" type="success" round>Success</el-button>
+          <el-button class="book__now-btn grid-content" type="success" round>
+            <a :href="item.book || '#'" class="text-black" target="_blank" rel="noopener noreferrer">
+              Book now
+            </a>
+          </el-button>
         </el-row>
       </div>
     </el-col>
@@ -167,6 +174,7 @@ const { urlImage, productsCar, products} = props;
     }
   }
   &__btn {
+    margin-top: 15px;
     &-item {
       width: 100%;
       margin-bottom: 5px;
@@ -181,5 +189,9 @@ const { urlImage, productsCar, products} = props;
 
   p, h1, h2, h3, h4, h5, h6, span {
     margin: 0;
+  }
+
+  .text-black {
+    color: #000;
   }
 </style>
